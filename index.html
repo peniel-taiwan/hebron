@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>主日歡迎你 — 星期日聚會邀請</title>
+<meta name="description" content="誠摯邀請你來參加星期日主日聚會，在這裡尋見平安、盼望與接納。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #FBF6EC;
+    --cream-deep: #F4EAD8;
+    --ink: #2A2118;
+    --moss: #34503C;
+    --moss-deep: #243A2B;
+    --gold: #C28A3D;
+    --gold-soft: #E0B873;
+    --clay: #B5683E;
+    --line: rgba(42,33,24,.12);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Noto Sans TC',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.8;
+    font-weight:300;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* subtle paper grain */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity:.04;
+    pointer-events:none;
+    z-index:9999;
+    mix-blend-mode:multiply;
+  }
+
+  .serif{font-family:'Noto Serif TC',serif;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:2rem 1.5rem;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 18%, rgba(224,184,115,.55), transparent 60%),
+      radial-gradient(ellipse 90% 70% at 50% 0%, rgba(194,138,61,.35), transparent 55%),
+      linear-gradient(170deg, #FDF7EA 0%, #FBF1DE 45%, #F2E6CE 100%);
+  }
+
+  /* rising sun glow */
+  .sun{
+    position:absolute;
+    top:-18vh;left:50%;
+    transform:translateX(-50%);
+    width:70vh;height:70vh;
+    max-width:600px;max-height:600px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255,243,219,.9) 0%, rgba(224,184,115,.4) 40%, transparent 70%);
+    filter:blur(8px);
+    animation:breathe 9s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes breathe{
+    0%,100%{transform:translateX(-50%) scale(1);opacity:.85;}
+    50%{transform:translateX(-50%) scale(1.08);opacity:1;}
+  }
+
+  /* light rays */
+  .rays{
+    position:absolute;top:-20vh;left:50%;
+    transform:translateX(-50%);
+    width:120vw;height:90vh;
+    pointer-events:none;opacity:.35;
+  }
+  .rays span{
+    position:absolute;top:0;left:50%;
+    width:2px;height:90vh;transform-origin:top center;
+    background:linear-gradient(to bottom, rgba(224,184,115,.6), transparent 70%);
+  }
+
+  .hero-inner{position:relative;z-index:2;max-width:760px;}
+
+  .kicker{
+    font-size:.8rem;
+    letter-spacing:.5em;
+    text-transform:uppercase;
+    color:var(--clay);
+    font-weight:500;
+    margin-bottom:1.8rem;
+    opacity:0;animation:fadeUp .9s ease forwards .2s;
+  }
+
+  .hero h1{
+    font-family:'Noto Serif TC',serif;
+    font-weight:600;
+    font-size:clamp(2.6rem,7vw,5rem);
+    line-height:1.25;
+    color:var(--moss-deep);
+    margin-bottom:1.6rem;
+    opacity:0;animation:fadeUp 1s ease forwards .4s;
+  }
+  .hero h1 em{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    color:var(--gold);
+    font-weight:500;
+  }
+
+  .hero .lead{
+    font-size:clamp(1.05rem,2.2vw,1.3rem);
+    color:#5A4D3C;
+    max-width:540px;
+    margin:0 auto 2.6rem;
+    font-weight:300;
+    opacity:0;animation:fadeUp 1s ease forwards .6s;
+  }
+
+  .cta{
+    display:inline-flex;align-items:center;gap:.6rem;
+    background:var(--moss);
+    color:var(--cream);
+    padding:1rem 2.4rem;
+    border-radius:100px;
+    font-size:1rem;font-weight:500;
+    text-decoration:none;
+    letter-spacing:.05em;
+    transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
+    box-shadow:0 10px 30px -8px rgba(36,58,43,.5);
+    opacity:0;animation:fadeUp 1s ease forwards .8s;
+  }
+  .cta:hover{transform:translateY(-3px);background:var(--moss-deep);box-shadow:0 16px 40px -8px rgba(36,58,43,.6);}
+
+  .scroll-hint{
+    position:absolute;bottom:2.2rem;left:50%;
+    transform:translateX(-50%);
+    z-index:2;
+    font-size:.72rem;letter-spacing:.3em;
+    color:#8A7B64;text-transform:uppercase;
+    display:flex;flex-direction:column;align-items:center;gap:.6rem;
+    opacity:0;animation:fadeUp 1s ease forwards 1.2s;
+  }
+  .scroll-hint .dot{
+    width:1px;height:42px;
+    background:linear-gradient(var(--gold),transparent);
+    animation:drop 2s ease-in-out infinite;
+  }
+  @keyframes drop{0%,100%{transform:scaleY(.5);opacity:.4;}50%{transform:scaleY(1);opacity:1;}}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+
+  /* ===== SECTIONS ===== */
+  section{padding:clamp(4rem,9vw,7.5rem) 1.5rem;}
+  .wrap{max-width:1040px;margin:0 auto;}
+
+  .reveal{opacity:0;transform:translateY(36px);transition:opacity .9s ease, transform .9s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  .eyebrow{
+    font-size:.78rem;letter-spacing:.4em;text-transform:uppercase;
+    color:var(--clay);font-weight:500;margin-bottom:1rem;
+    display:flex;align-items:center;gap:.9rem;
+  }
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--clay);display:inline-block;}
+
+  /* ===== INFO / GATHERING ===== */
+  .gather{background:var(--cream-deep);}
+  .gather h2{
+    font-family:'Noto Serif TC',serif;font-weight:600;
+    font-size:clamp(1.9rem,4.5vw,3rem);
+    color:var(--moss-deep);margin-bottom:.8rem;line-height:1.3;
+  }
+  .gather p.sub{color:#6B5D49;max-width:520px;margin-bottom:3rem;}
+
+  .info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:1.4rem;
+  }
+  .card{
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:2.2rem 1.9rem;
+    position:relative;
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 22px 48px -20px rgba(42,33,24,.35);}
+  .card .ico{
+    width:50px;height:50px;border-radius:14px;
+    background:linear-gradient(145deg,var(--gold-soft),var(--gold));
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:1.4rem;color:#fff;
+  }
+  .card .ico svg{width:24px;height:24px;}
+  .card h3{
+    font-family:'Noto Serif TC',serif;font-weight:600;
+    font-size:1.25rem;color:var(--moss-deep);margin-bottom:.5rem;
+  }
+  .card .big{
+    font-family:'Noto Serif TC',serif;font-size:1.5rem;
+    color:var(--ink);font-weight:500;margin-bottom:.3rem;line-height:1.4;
+  }
+  .card .small{font-size:.95rem;color:#6B5D49;}
+  .ph{color:var(--clay);font-weight:500;}
+
+  /* ===== MEETING CARDS ===== */
+  .meet-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.6rem;}
+  .meet-card{
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:2.6rem 2.2rem 2.4rem;
+    position:relative;overflow:hidden;
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .meet-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:4px;
+    background:linear-gradient(90deg,var(--moss),var(--gold));
+  }
+  .meet-card.alt::before{background:linear-gradient(90deg,var(--clay),var(--gold-soft));}
+  .meet-card:hover{transform:translateY(-6px);box-shadow:0 24px 50px -22px rgba(42,33,24,.4);}
+  .tag{
+    display:inline-block;font-size:.76rem;letter-spacing:.25em;text-transform:uppercase;
+    color:var(--moss);font-weight:500;background:rgba(52,80,60,.09);
+    padding:.45rem 1.1rem;border-radius:100px;margin-bottom:1.8rem;
+  }
+  .meet-card.alt .tag{color:var(--clay);background:rgba(181,104,62,.1);}
+  .meet-row{display:flex;gap:1rem;align-items:flex-start;padding:1rem 0;border-bottom:1px solid var(--line);}
+  .meet-row:first-of-type{border-top:1px solid var(--line);}
+  .meet-row .ri{width:22px;height:22px;color:var(--gold);flex-shrink:0;margin-top:4px;}
+  .meet-row .rlbl{font-size:.76rem;color:#8A7B64;letter-spacing:.12em;margin-bottom:.15rem;}
+  .meet-row .rval{font-family:'Noto Serif TC',serif;font-size:1.18rem;color:var(--ink);font-weight:500;line-height:1.45;}
+  .meet-desc{color:#6B5D49;font-size:.96rem;margin:1.7rem 0 0;}
+
+  .map-link{
+    display:inline-flex;align-items:center;gap:.45rem;margin-top:1.6rem;
+    color:var(--moss);font-weight:500;font-size:.95rem;text-decoration:none;
+    border-bottom:1px solid var(--gold-soft);padding-bottom:3px;transition:color .25s, gap .25s;
+  }
+  .meet-card.alt .map-link{color:var(--clay);}
+  .map-link:hover{gap:.8rem;}
+
+  /* ===== PLACE / DIRECTIONS ===== */
+  .place-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.6rem;margin-top:2.8rem;}
+  .place{background:var(--cream);border:1px solid var(--line);border-radius:20px;padding:2.2rem 2rem;}
+  .place h3{font-family:'Noto Serif TC',serif;font-weight:600;font-size:1.3rem;color:var(--moss-deep);margin-bottom:1.2rem;}
+
+  /* ===== VERSE ===== */
+  .verse{
+    text-align:center;
+    background:
+      radial-gradient(ellipse 70% 80% at 50% 50%, rgba(224,184,115,.18), transparent 70%),
+      var(--moss-deep);
+    color:var(--cream);
+    position:relative;overflow:hidden;
+  }
+  .verse .mark{
+    font-family:'Cormorant Garamond',serif;
+    font-size:9rem;line-height:.5;color:var(--gold-soft);
+    opacity:.35;height:60px;display:block;
+  }
+  .verse blockquote{
+    font-family:'Noto Serif TC',serif;font-weight:500;
+    font-size:clamp(1.5rem,4vw,2.5rem);
+    line-height:1.7;max-width:760px;margin:0 auto 1.6rem;
+  }
+  .verse cite{
+    font-style:normal;letter-spacing:.25em;font-size:.85rem;
+    color:var(--gold-soft);text-transform:uppercase;
+  }
+
+  /* ===== EXPERIENCE ===== */
+  .exp h2{
+    font-family:'Noto Serif TC',serif;font-weight:600;
+    font-size:clamp(1.9rem,4.5vw,3rem);color:var(--moss-deep);
+    margin-bottom:3rem;line-height:1.3;max-width:600px;
+  }
+  .exp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2.6rem;}
+  .exp-item{position:relative;padding-top:1.6rem;}
+  .exp-item .num{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:2.4rem;color:var(--gold);position:absolute;top:-.6rem;left:0;
+  }
+  .exp-item h4{
+    font-family:'Noto Serif TC',serif;font-weight:600;font-size:1.3rem;
+    color:var(--moss-deep);margin:1.6rem 0 .7rem;
+  }
+  .exp-item p{color:#6B5D49;font-size:1rem;}
+
+  /* ===== VISIT ===== */
+  .visit{background:var(--cream-deep);}
+  .visit-flex{display:grid;grid-template-columns:1.1fr 1fr;gap:3.5rem;align-items:center;}
+  .visit h2{
+    font-family:'Noto Serif TC',serif;font-weight:600;
+    font-size:clamp(1.9rem,4.5vw,2.8rem);color:var(--moss-deep);
+    margin-bottom:1.4rem;line-height:1.3;
+  }
+  .visit p{color:#6B5D49;margin-bottom:1.8rem;}
+  .detail-row{display:flex;gap:1rem;padding:1.1rem 0;border-top:1px solid var(--line);align-items:flex-start;}
+  .detail-row:last-child{border-bottom:1px solid var(--line);}
+  .detail-row .lbl{
+    min-width:84px;font-weight:500;color:var(--moss);font-size:.95rem;
+  }
+  .detail-row .val{color:var(--ink);font-size:.98rem;}
+  .map{
+    background:linear-gradient(135deg,#E6D9BE,#D8C49E);
+    border-radius:20px;min-height:340px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:1rem;color:var(--moss-deep);text-align:center;padding:2rem;
+    border:1px solid var(--line);
+  }
+  .map svg{width:46px;height:46px;opacity:.7;}
+  .map .mtxt{font-family:'Noto Serif TC',serif;font-size:1.1rem;}
+  .map .msub{font-size:.85rem;color:#7A6B52;}
+
+  /* ===== FOOTER CTA ===== */
+  .foot{
+    text-align:center;
+    background:
+      radial-gradient(ellipse 70% 100% at 50% 0%, rgba(224,184,115,.3), transparent 65%),
+      linear-gradient(180deg,var(--cream),var(--cream-deep));
+  }
+  .foot h2{
+    font-family:'Noto Serif TC',serif;font-weight:600;
+    font-size:clamp(2rem,5vw,3.2rem);color:var(--moss-deep);
+    margin-bottom:1.2rem;line-height:1.3;
+  }
+  .foot p{color:#6B5D49;max-width:480px;margin:0 auto 2.4rem;}
+  .contact-line{
+    margin-top:3rem;display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;
+    font-size:.95rem;color:#6B5D49;
+  }
+  .contact-line a{color:var(--moss);text-decoration:none;border-bottom:1px solid var(--gold-soft);padding-bottom:2px;transition:color .25s;}
+  .contact-line a:hover{color:var(--clay);}
+
+  footer{
+    text-align:center;padding:2.5rem 1.5rem;
+    background:var(--moss-deep);color:rgba(251,246,236,.6);
+    font-size:.85rem;letter-spacing:.05em;
+  }
+  footer .fname{font-family:'Noto Serif TC',serif;color:var(--gold-soft);font-size:1.05rem;display:block;margin-bottom:.5rem;}
+
+  @media(max-width:760px){
+    .visit-flex{grid-template-columns:1fr;gap:2rem;}
+    .verse .mark{font-size:6rem;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <div class="sun"></div>
+    <div class="rays" id="rays"></div>
+    <div class="hero-inner">
+      <p class="kicker">主日 · 家庭聚會</p>
+      <h1>這個週末，<br>來尋見<em>平安</em>與<em>盼望</em></h1>
+      <p class="lead">無論你帶著什麼樣的心情走進來，這裡都有一個位子為你預備。每個週日的早晨，與每個週二的夜晚，我們都誠摯邀請你，一同被愛環繞、重新得力。</p>
+      <a href="#visit" class="cta">查看聚會時間與地點 →</a>
+    </div>
+    <div class="scroll-hint"><span>向下探索</span><span class="dot"></span></div>
+  </header>
+
+  <!-- ===== GATHERING INFO ===== -->
+  <section class="gather">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">聚會資訊</p>
+        <h2>兩種聚會，<br>兩種與你相遇的方式</h2>
+        <p class="sub">無論你習慣週日的早晨，還是週間的夜晚，我們都為你預備了位子。不需事先報名，也不需任何條件，帶著你自己來就好。</p>
+      </div>
+      <div class="meet-grid">
+
+        <div class="meet-card reveal">
+          <span class="tag">主日聚會</span>
+          <div class="meet-row">
+            <svg class="ri" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <div><div class="rlbl">時間</div><div class="rval">每週日 早上 10:00</div></div>
+          </div>
+          <div class="meet-row">
+            <svg class="ri" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <div><div class="rlbl">地點</div><div class="rval">臺中市南屯區<br>南屯路二段 290 號 B1</div></div>
+          </div>
+          <p class="meet-desc">一週的開始，邀你以敬拜與安靜的心，重新面向新的一週。聚會約 90 分鐘，結束後備有茶點交誼。</p>
+          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=臺中市南屯區南屯路二段290號" target="_blank" rel="noopener">在 Google 地圖開啟導航 →</a>
+        </div>
+
+        <div class="meet-card alt reveal">
+          <span class="tag">週間家庭聚會</span>
+          <div class="meet-row">
+            <svg class="ri" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <div><div class="rlbl">時間</div><div class="rval">每週二 晚上 19:30</div></div>
+          </div>
+          <div class="meet-row">
+            <svg class="ri" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <div><div class="rlbl">地點</div><div class="rval">臺中市西屯區福安里<br>福順路 78 號 3F</div></div>
+          </div>
+          <p class="meet-desc">在溫馨的家中，圍坐分享生活與信仰。氣氛輕鬆自在，特別適合想更深認識、或在週間需要一份陪伴的你。</p>
+          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=臺中市西屯區福順路78號" target="_blank" rel="noopener">在 Google 地圖開啟導航 →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VERSE ===== -->
+  <section class="verse">
+    <div class="wrap reveal">
+      <span class="mark">&ldquo;</span>
+      <blockquote>凡勞苦擔重擔的人，<br>可以到我這裡來，<br>我就使你們得安息。</blockquote>
+      <cite>馬太福音 11:28</cite>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section class="exp">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">你會遇見什麼</p>
+        <h2>一個讓你可以慢下來、被接納的早晨</h2>
+      </div>
+      <div class="exp-grid">
+        <div class="exp-item reveal">
+          <span class="num">01</span>
+          <h4>溫暖的歡迎</h4>
+          <p>一進門就有人為你帶位、為你倒杯熱飲。你不需要認識任何人，也不會被冷落。</p>
+        </div>
+        <div class="exp-item reveal">
+          <span class="num">02</span>
+          <h4>安靜的詩歌與信息</h4>
+          <p>透過詩歌與一段貼近生活的分享，讓你在忙碌的一週後，重新得著力量與方向。</p>
+        </div>
+        <div class="exp-item reveal">
+          <span class="num">03</span>
+          <h4>真實的連結</h4>
+          <p>聚會後留下來喝杯咖啡、聊聊天。在這裡，你會遇見一群願意陪你走一段路的人。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VISIT / DIRECTIONS ===== -->
+  <section class="visit" id="visit">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">如何前往</p>
+        <h2>兩個聚會地點，<br>我們都在這裡等你</h2>
+        <p>第一次來不用擔心找不到路，點選地圖連結即可直接導航。若有任何疑問，也歡迎隨時與我們聯絡。</p>
+      </div>
+      <div class="place-grid">
+
+        <div class="place reveal">
+          <h3>主日聚會地點</h3>
+          <div class="detail-row"><span class="lbl">地址</span><span class="val">臺中市南屯區南屯路二段 290 號 B1</span></div>
+          <div class="detail-row"><span class="lbl">時間</span><span class="val">每週日 早上 10:00</span></div>
+          <div class="detail-row"><span class="lbl">大眾運輸</span><span class="val ph">【例如：捷運○○站步行 5 分鐘 / 公車○○站下車】</span></div>
+          <div class="detail-row"><span class="lbl">停車</span><span class="val ph">【例如：地下停車場 / 鄰近付費停車場】</span></div>
+          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=臺中市南屯區南屯路二段290號" target="_blank" rel="noopener">在 Google 地圖開啟導航 →</a>
+        </div>
+
+        <div class="place reveal">
+          <h3>家庭聚會地點</h3>
+          <div class="detail-row"><span class="lbl">地址</span><span class="val">臺中市西屯區福安里福順路 78 號 3F</span></div>
+          <div class="detail-row"><span class="lbl">時間</span><span class="val">每週二 晚上 19:30</span></div>
+          <div class="detail-row"><span class="lbl">大眾運輸</span><span class="val ph">【例如：公車○○站下車步行 3 分鐘】</span></div>
+          <div class="detail-row"><span class="lbl">停車</span><span class="val ph">【例如：可停路邊收費格位】</span></div>
+          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=臺中市西屯區福順路78號" target="_blank" rel="noopener">在 Google 地圖開啟導航 →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER CTA ===== -->
+  <section class="foot">
+    <div class="wrap reveal">
+      <h2>這個週末或這個週間，<br>留一段時間給自己</h2>
+      <p>不必準備什麼，也不必有任何負擔。無論週日的早晨或週二的夜晚，我們都帶著一杯熱飲與一個微笑，等你來。</p>
+      <a href="#visit" class="cta">我想來看看 →</a>
+      <div class="contact-line">
+        <span>聯絡我們：</span>
+        <a href="tel:【電話】">電話 【09xx-xxx-xxx】</a>
+        <a href="#">LINE 【加入官方帳號】</a>
+        <a href="mailto:【email】">【email@example.com】</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="fname ph">【教會 / 聚會所名稱】</span>
+    願平安與你同在 · 期待週日與你相見
+  </footer>
+
+<script>
+  // light rays
+  const rays = document.getElementById('rays');
+  for(let i=0;i<14;i++){
+    const s=document.createElement('span');
+    const angle=(i-7)*7;
+    s.style.transform=`translateX(-50%) rotate(${angle}deg)`;
+    s.style.opacity=(0.3+Math.random()*0.5).toFixed(2);
+    rays.appendChild(s);
+  }
+
+  // scroll reveal
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=>e.target.classList.add('in'), (i%3)*90);
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
