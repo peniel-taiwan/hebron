@@ -287,6 +287,108 @@
     color:var(--gold-soft);text-transform:uppercase;
   }
 
+  /* ===== GALLERY / 福音圖卡 ===== */
+  .gallery{background:var(--cream);}
+  .gallery .intro{max-width:600px;margin-bottom:3rem;}
+  .gallery h2{
+    font-family:'Noto Serif TC',serif;font-weight:600;
+    font-size:clamp(1.9rem,4.5vw,3rem);color:var(--moss-deep);
+    margin-bottom:.8rem;line-height:1.3;
+  }
+  .gallery .intro p{color:#6B5D49;}
+  .g-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:1.4rem;
+  }
+  .g-item{
+    position:relative;display:block;width:100%;
+    border:none;padding:0;margin:0;cursor:pointer;
+    border-radius:18px;overflow:hidden;
+    background:var(--cream-deep);
+    aspect-ratio:3/2;
+    box-shadow:0 14px 36px -22px rgba(42,33,24,.5);
+    transition:transform .4s ease, box-shadow .4s ease;
+    font-family:inherit;
+  }
+  .g-item img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .6s ease;
+  }
+  .g-item:hover{transform:translateY(-6px);box-shadow:0 26px 52px -22px rgba(42,33,24,.55);}
+  .g-item:hover img{transform:scale(1.05);}
+  .g-item:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+  .g-overlay{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:1.2rem 1.3rem;
+    background:linear-gradient(to top, rgba(36,58,43,.7) 0%, transparent 55%);
+    opacity:0;transition:opacity .35s ease;
+    text-align:left;
+  }
+  .g-item:hover .g-overlay,.g-item:focus-visible .g-overlay{opacity:1;}
+  .g-overlay .dl{
+    display:inline-flex;align-items:center;gap:.45rem;
+    color:var(--cream);font-size:.9rem;font-weight:500;letter-spacing:.03em;
+  }
+  .g-overlay .dl svg{width:17px;height:17px;}
+
+  /* lightbox */
+  .lb{
+    position:fixed;inset:0;z-index:10000;
+    background:rgba(26,20,14,.92);
+    display:flex;align-items:center;justify-content:center;
+    padding:1.5rem;
+    opacity:0;visibility:hidden;transition:opacity .35s ease, visibility .35s;
+    backdrop-filter:blur(4px);
+  }
+  .lb.open{opacity:1;visibility:visible;}
+  .lb-inner{
+    position:relative;max-width:1000px;width:100%;
+    display:flex;flex-direction:column;align-items:center;gap:1.4rem;
+  }
+  .lb-img{
+    max-width:100%;max-height:72vh;border-radius:14px;
+    box-shadow:0 30px 80px -30px rgba(0,0,0,.8);
+    transform:scale(.96);transition:transform .35s ease;
+  }
+  .lb.open .lb-img{transform:scale(1);}
+  .lb-actions{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+  .lb-dl{
+    display:inline-flex;align-items:center;gap:.6rem;
+    background:var(--gold);color:#fff;
+    padding:.85rem 2rem;border-radius:100px;
+    font-size:.98rem;font-weight:500;text-decoration:none;letter-spacing:.04em;
+    transition:transform .3s ease, background .3s ease;
+    border:none;cursor:pointer;font-family:inherit;
+  }
+  .lb-dl:hover{transform:translateY(-2px);background:var(--clay);}
+  .lb-dl svg{width:19px;height:19px;}
+  .lb-close{
+    position:absolute;top:-3rem;right:0;
+    background:none;border:none;cursor:pointer;
+    color:rgba(251,246,236,.8);font-size:2rem;line-height:1;
+    width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+    transition:color .25s;
+  }
+  .lb-close:hover{color:#fff;}
+  .lb-nav{
+    position:absolute;top:50%;transform:translateY(-50%);
+    background:rgba(251,246,236,.12);border:1px solid rgba(251,246,236,.25);
+    color:var(--cream);cursor:pointer;
+    width:46px;height:46px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .25s;
+  }
+  .lb-nav:hover{background:rgba(251,246,236,.25);}
+  .lb-nav svg{width:22px;height:22px;}
+  .lb-prev{left:-1rem;}
+  .lb-next{right:-1rem;}
+  @media(max-width:760px){
+    .lb-prev{left:.2rem;}.lb-next{right:.2rem;}
+    .lb-close{top:-2.6rem;}
+  }
+
   /* ===== EXPERIENCE ===== */
   .exp h2{
     font-family:'Noto Serif TC',serif;font-weight:600;
@@ -343,13 +445,49 @@
     font-size:clamp(2rem,5vw,3.2rem);color:var(--moss-deep);
     margin-bottom:1.2rem;line-height:1.3;
   }
-  .foot p{color:#6B5D49;max-width:480px;margin:0 auto 2.4rem;}
-  .contact-line{
-    margin-top:3rem;display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;
-    font-size:.95rem;color:#6B5D49;
+  .foot p{color:#6B5D49;max-width:520px;margin:0 auto 2.6rem;}
+
+  /* merged LINE block inside footer CTA */
+  .foot-connect{
+    display:inline-flex;align-items:center;gap:clamp(1.6rem,4vw,2.8rem);
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-radius:28px;
+    padding:clamp(1.8rem,4vw,2.6rem) clamp(2rem,4vw,3rem);
+    position:relative;overflow:hidden;text-align:left;
+    box-shadow:0 24px 60px -30px rgba(42,33,24,.3);
+    margin-top:.4rem;
   }
-  .contact-line a{color:var(--moss);text-decoration:none;border-bottom:1px solid var(--gold-soft);padding-bottom:2px;transition:color .25s;}
-  .contact-line a:hover{color:var(--clay);}
+  .foot-connect::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:4px;
+    background:linear-gradient(90deg,#06C755,var(--gold-soft));
+  }
+  .qr-frame{
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:.9rem;
+    width:172px;height:172px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 28px -14px rgba(42,33,24,.35);
+  }
+  .qr-frame img{width:100%;height:100%;display:block;border-radius:8px;}
+  .foot-connect-text{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;}
+  .line-btn{
+    display:inline-flex;align-items:center;gap:.7rem;
+    background:#06C755;color:#fff;
+    padding:.95rem 2rem;border-radius:100px;
+    font-size:1rem;font-weight:500;text-decoration:none;letter-spacing:.04em;
+    transition:transform .3s ease, box-shadow .3s ease;
+    box-shadow:0 10px 28px -10px rgba(6,199,85,.6);
+  }
+  .line-btn:hover{transform:translateY(-3px);box-shadow:0 16px 36px -10px rgba(6,199,85,.7);}
+  .line-btn svg{width:22px;height:22px;}
+  .qr-hint{font-size:.88rem;color:#8A7B64;letter-spacing:.02em;line-height:1.7;margin:0;}
+  @media(max-width:560px){
+    .foot-connect{flex-direction:column;text-align:center;}
+    .foot-connect-text{align-items:center;}
+  }
 
   footer{
     text-align:center;padding:2.5rem 1.5rem;
@@ -374,13 +512,13 @@
       <p class="kicker">主日 · 家庭聚會</p>
       <h1>這個週末，<br>來尋見<em>平安</em>與<em>盼望</em></h1>
       <p class="lead">無論你帶著什麼樣的心情走進來，這裡都有一個位子為你預備。每個週日的早晨，與每個週二的夜晚，我們都誠摯邀請你，一同被愛環繞、重新得力。</p>
-      <a href="#visit" class="cta">查看聚會時間與地點 →</a>
+      <a href="#gather" class="cta">查看聚會時間與地點 →</a>
     </div>
     <div class="scroll-hint"><span>向下探索</span><span class="dot"></span></div>
   </header>
 
   <!-- ===== GATHERING INFO ===== -->
-  <section class="gather">
+  <section class="gather" id="gather">
     <div class="wrap">
       <div class="reveal">
         <p class="eyebrow">聚會資訊</p>
@@ -430,6 +568,82 @@
     </div>
   </section>
 
+  <!-- ===== GALLERY / 福音圖卡 ===== -->
+  <section class="gallery">
+    <div class="wrap">
+      <div class="intro reveal">
+        <p class="eyebrow">福音圖卡</p>
+        <h2>幾句話、一幅景，<br>願能成為你今天的力量</h2>
+        <p>這是我們一同預備的福音圖卡，每一張都配上一節經文。若有哪一句正說中了你的心，歡迎點開、下載，存在手機裡，或分享給你想念、想祝福的人。</p>
+      </div>
+      <div class="g-grid">
+        <button class="g-item reveal" data-idx="0" aria-label="查看並下載：滿足喜樂 Joyful Fullness">
+          <img src="images/joyful-fullness-thumb.jpg" alt="滿足喜樂（Joyful Fullness）— 在你面前有滿足的喜樂；在你右手中有永遠的福樂。" loading="lazy">
+          <span class="g-overlay">
+            <span class="dl">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+              點圖放大 · 下載分享
+            </span>
+          </span>
+        </button>
+        <button class="g-item reveal" data-idx="1" aria-label="查看並下載：你是被愛 You Are Loved">
+          <img src="images/you-are-loved-thumb.jpg" alt="你是被愛（You Are Loved）— 看哪，父賜給我們是何等的愛，使我們得稱為神的兒女！" loading="lazy">
+          <span class="g-overlay">
+            <span class="dl">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+              點圖放大 · 下載分享
+            </span>
+          </span>
+        </button>
+        <button class="g-item reveal" data-idx="2" aria-label="查看並下載：永恆盼望 Eternal Hope">
+          <img src="images/eternal-hope-thumb.jpg" alt="永恆盼望（Eternal Hope）— 我們有這指望，如同靈魂的錨，又堅固又牢靠，且通入幔內。" loading="lazy">
+          <span class="g-overlay">
+            <span class="dl">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+              點圖放大 · 下載分享
+            </span>
+          </span>
+        </button>
+        <button class="g-item reveal" data-idx="3" aria-label="查看並下載：有一道光 There Is a Light">
+          <img src="images/there-is-a-light-thumb.jpg" alt="有一道光（There Is a Light）— 黑暗不能勝過光。" loading="lazy">
+          <span class="g-overlay">
+            <span class="dl">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+              點圖放大 · 下載分享
+            </span>
+          </span>
+        </button>
+        <button class="g-item reveal" data-idx="4" aria-label="查看並下載：願你平安 Peace Be With You">
+          <img src="images/peace-be-with-you-thumb.jpg" alt="願你平安（Peace Be With You）— 我留下平安給你們；我將我的平安賜給你們。" loading="lazy">
+          <span class="g-overlay">
+            <span class="dl">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+              點圖放大 · 下載分享
+            </span>
+          </span>
+        </button>
+        <button class="g-item reveal" data-idx="5" aria-label="查看並下載：活水泉源 Living Water">
+          <img src="images/living-water-thumb.jpg" alt="活水泉源（Living Water）— 人若渴了，可以到我這裡來喝。" loading="lazy">
+          <span class="g-overlay">
+            <span class="dl">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+              點圖放大 · 下載分享
+            </span>
+          </span>
+        </button>
+        <button class="g-item reveal" data-idx="6" aria-label="查看並下載：全新的你 Made New">
+          <img src="images/made-new-thumb.jpg" alt="全新的你（Made New）— 若有人在基督裡，他就是新造的人。" loading="lazy">
+          <span class="g-overlay">
+            <span class="dl">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+              點圖放大 · 下載分享
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== EXPERIENCE ===== -->
   <section class="exp">
     <div class="wrap">
@@ -457,49 +671,22 @@
     </div>
   </section>
 
-  <!-- ===== VISIT / DIRECTIONS ===== -->
-  <section class="visit" id="visit">
-    <div class="wrap">
-      <div class="reveal">
-        <p class="eyebrow">如何前往</p>
-        <h2>兩個聚會地點，<br>我們都在這裡等你</h2>
-        <p>第一次來不用擔心找不到路，點選地圖連結即可直接導航。若有任何疑問，也歡迎隨時與我們聯絡。</p>
-      </div>
-      <div class="place-grid">
-
-        <div class="place reveal">
-          <h3>主日聚會地點</h3>
-          <div class="detail-row"><span class="lbl">地址</span><span class="val">臺中市南屯區南屯路二段 290 號 B1</span></div>
-          <div class="detail-row"><span class="lbl">時間</span><span class="val">每週日 早上 10:00</span></div>
-          <div class="detail-row"><span class="lbl">大眾運輸</span><span class="val ph">【例如：捷運○○站步行 5 分鐘 / 公車○○站下車】</span></div>
-          <div class="detail-row"><span class="lbl">停車</span><span class="val ph">【例如：地下停車場 / 鄰近付費停車場】</span></div>
-          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=臺中市南屯區南屯路二段290號" target="_blank" rel="noopener">在 Google 地圖開啟導航 →</a>
-        </div>
-
-        <div class="place reveal">
-          <h3>家庭聚會地點</h3>
-          <div class="detail-row"><span class="lbl">地址</span><span class="val">臺中市西屯區福安里福順路 78 號 3F</span></div>
-          <div class="detail-row"><span class="lbl">時間</span><span class="val">每週二 晚上 19:30</span></div>
-          <div class="detail-row"><span class="lbl">大眾運輸</span><span class="val ph">【例如：公車○○站下車步行 3 分鐘】</span></div>
-          <div class="detail-row"><span class="lbl">停車</span><span class="val ph">【例如：可停路邊收費格位】</span></div>
-          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=臺中市西屯區福順路78號" target="_blank" rel="noopener">在 Google 地圖開啟導航 →</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
   <!-- ===== FOOTER CTA ===== -->
   <section class="foot">
     <div class="wrap reveal">
       <h2>這個週末或這個週間，<br>留一段時間給自己</h2>
-      <p>不必準備什麼，也不必有任何負擔。無論週日的早晨或週二的夜晚，我們都帶著一杯熱飲與一個微笑，等你來。</p>
-      <a href="#visit" class="cta">我想來看看 →</a>
-      <div class="contact-line">
-        <span>聯絡我們：</span>
-        <a href="tel:【電話】">電話 【09xx-xxx-xxx】</a>
-        <a href="#">LINE 【加入官方帳號】</a>
-        <a href="mailto:【email】">【email@example.com】</a>
+      <p>不必準備什麼，也不必有任何負擔。無論週日的早晨或週二的夜晚，我們都帶著一杯熱飲與一個微笑，等你來。先加入我們的 LINE，讓我們在路上陪你走一段。</p>
+      <div class="foot-connect">
+        <div class="qr-frame">
+          <img src="data:image/png;base64,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" alt="加入 LINE 官方帳號 QR Code">
+        </div>
+        <div class="foot-connect-text">
+          <a class="line-btn" href="https://lin.ee/yMjgjd2" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.69 2 10.25c0 4.08 3.55 7.5 8.35 8.14.32.07.77.21.88.49.1.25.07.64.03.9l-.14.85c-.04.25-.2.99.87.54 1.07-.45 5.77-3.4 7.87-5.82C21.4 13.69 22 12.04 22 10.25 22 5.69 17.52 2 12 2z"/></svg>
+            加入官方 LINE 帳號 →
+          </a>
+          <p class="qr-hint">掃描 QR Code，或點按鈕加入。<br>聚會消息與最新動態，都會在這裡與你分享。</p>
+        </div>
       </div>
     </div>
   </section>
@@ -508,6 +695,22 @@
     <span class="fname ph">【教會 / 聚會所名稱】</span>
     願平安與你同在 · 期待週日與你相見
   </footer>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="圖片檢視">
+    <div class="lb-inner">
+      <button class="lb-close" id="lbClose" aria-label="關閉">&times;</button>
+      <button class="lb-nav lb-prev" id="lbPrev" aria-label="上一張"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="lb-nav lb-next" id="lbNext" aria-label="下一張"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      <img class="lb-img" id="lbImg" src="" alt="">
+      <div class="lb-actions">
+        <a class="lb-dl" id="lbDownload" href="" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+          下載這張圖片
+        </a>
+      </div>
+    </div>
+  </div>
 
 <script>
   // light rays
@@ -530,6 +733,38 @@
     });
   },{threshold:0.15});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // ===== gallery lightbox =====
+  const galleryData = [{"full": "images/joyful-fullness.jpg", "zh": "滿足喜樂", "en": "Joyful Fullness", "verse": "在你面前有滿足的喜樂；在你右手中有永遠的福樂。", "ref": "詩篇 16:11", "slug": "joyful-fullness"}, {"full": "images/you-are-loved.jpg", "zh": "你是被愛", "en": "You Are Loved", "verse": "看哪，父賜給我們是何等的愛，使我們得稱為神的兒女！", "ref": "約翰一書 3:1", "slug": "you-are-loved"}, {"full": "images/eternal-hope.jpg", "zh": "永恆盼望", "en": "Eternal Hope", "verse": "我們有這指望，如同靈魂的錨，又堅固又牢靠，且通入幔內。", "ref": "希伯來書 6:19", "slug": "eternal-hope"}, {"full": "images/there-is-a-light.jpg", "zh": "有一道光", "en": "There Is a Light", "verse": "黑暗不能勝過光。", "ref": "約翰福音 1:5", "slug": "there-is-a-light"}, {"full": "images/peace-be-with-you.jpg", "zh": "願你平安", "en": "Peace Be With You", "verse": "我留下平安給你們；我將我的平安賜給你們。", "ref": "約翰福音 14:27", "slug": "peace-be-with-you"}, {"full": "images/living-water.jpg", "zh": "活水泉源", "en": "Living Water", "verse": "人若渴了，可以到我這裡來喝。", "ref": "約翰福音 7:37", "slug": "living-water"}, {"full": "images/made-new.jpg", "zh": "全新的你", "en": "Made New", "verse": "若有人在基督裡，他就是新造的人。", "ref": "哥林多後書 5:17", "slug": "made-new"}];
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbDownload = document.getElementById('lbDownload');
+  let curIdx = 0;
+
+  function showImg(i){
+    curIdx = (i + galleryData.length) % galleryData.length;
+    const d = galleryData[curIdx];
+    lbImg.src = d.full;
+    lbImg.alt = d.zh + '（' + d.en + '）— ' + d.verse;
+    lbDownload.href = d.full;
+    lbDownload.setAttribute('download', d.slug + '.jpg');
+  }
+  function openLb(i){ showImg(i); lb.classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeLb(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+
+  document.querySelectorAll('.g-item').forEach(btn=>{
+    btn.addEventListener('click',()=>openLb(parseInt(btn.dataset.idx,10)));
+  });
+  document.getElementById('lbClose').addEventListener('click',closeLb);
+  document.getElementById('lbPrev').addEventListener('click',()=>showImg(curIdx-1));
+  document.getElementById('lbNext').addEventListener('click',()=>showImg(curIdx+1));
+  lb.addEventListener('click',(e)=>{ if(e.target===lb) closeLb(); });
+  document.addEventListener('keydown',(e)=>{
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') closeLb();
+    if(e.key==='ArrowLeft') showImg(curIdx-1);
+    if(e.key==='ArrowRight') showImg(curIdx+1);
+  });
 </script>
 </body>
 </html>
