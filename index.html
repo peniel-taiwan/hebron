@@ -495,6 +495,9 @@
     font-size:.85rem;letter-spacing:.05em;
   }
   footer .fname{font-family:'Noto Serif TC',serif;color:var(--gold-soft);font-size:1.05rem;display:block;margin-bottom:.5rem;}
+  footer .fname a{color:var(--gold-soft);text-decoration:none;transition:color .25s;border-bottom:1px solid transparent;}
+  footer .fname a:hover{color:#fff;border-bottom-color:rgba(224,184,115,.6);}
+  footer .fname .fsep{color:rgba(224,184,115,.5);margin:0 .5rem;}
 
   @media(max-width:760px){
     .visit-flex{grid-template-columns:1fr;gap:2rem;}
@@ -665,8 +668,12 @@
   </section>
 
   <footer>
-    <span class="fname ph">【教會 / 聚會所名稱】</span>
-    願平安與你同在 · 期待週日與你相見
+    <span class="fname">
+      <a href="https://www.facebook.com/penieltaiwan/?locale=zh_TW" target="_blank" rel="noopener">台灣毘努伊勒會</a>
+      <span class="fsep">/</span>
+      <a href="https://hebron.peniel.com.tw" target="_blank" rel="noopener">希伯崙之師</a>
+    </span>
+    願平安與你同在 · 期待與你相見
   </footer>
 
   <!-- ===== LIGHTBOX ===== -->
